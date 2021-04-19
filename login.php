@@ -20,39 +20,32 @@ $objUsuario = new Usuarios();
     <div class="form-control" style="width: 500px;">
         <fieldset>
             <legend>Formulario</legend> <br>
-            <form action="index.php" method="POST">
+            <form action="login.php" method="post">
                 <label for="usuario">Usuario:</label>
                 <input type="text" name="txtUsuario" placeholder="Nombre de Usuario" class="form-control"> <br>
                 <label for="password">Contraseña:</label>
                 <input type="text" name="txtPassword" placeholder="Contraseña" class="form-control"> <br>
                 <input type="submit" name="btnLogin" value="Entrar" class="btn btn-success">
-
             </form>
-
-
         </fieldset>
-
     </div>
-<?php
+    <?php
 
-if ($_POST) {
-    $usuario = $_REQUEST["txtUsuario"];
-    $contra = $_REQUEST["txtPassword"];
-    $objUsuario->setUsuarioNombre($usuario);
-    $objUsuario->setUsuarioPass($contra);
-    $nivel = $objUsuario->validar();
+    if ($_POST) {
+        $usuario = $_REQUEST["txtUsuario"];
+        $contra = $_REQUEST["txtPassword"];
+        $objUsuario->setUsuarioNombre($usuario);
+        $objUsuario->setUsuarioPass($contra);
+        $nivel = $objUsuario->validar();
 
-    if ($nivel !="") {
-        $_SESSION["usuario"]["nivel"]=$nivel;
-        $_SESSION["usuario"]["usuario"]=$usuario;
-        header('location:index.php');
-    }else {
-        header('login.php');
+        if ($nivel != "") {
+            $_SESSION["usuario"]["nivel"] = $nivel;
+            $_SESSION["usuario"]["usuario"] = $usuario;
+            header("location:index.php");
+        } else {
+            header("location:login.php");
+        }
     }
-}
-
-
-
 ?>
 </body>
 
