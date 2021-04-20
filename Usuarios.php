@@ -61,14 +61,13 @@
 
         //acciones de usuario
         public function validar(){
-            $nivel = "";
+             $nivel = "";
             $conexion = new mysqli('localhost', 'root','','sisv11');//conexion al sql
             $sql= "SELECT nivel FROM usuarios WHERE nombreuser = '".$this->getUsuarioNombre()."' and pass = '".$this->getUsuarioPass()."'";
             if ($resultado = $conexion->query($sql)) {
                 $usuarios = $resultado->fetch_assoc();//convierte a un arreglo asosiativo el resultado de la consulta
                 $nivel = $usuarios["nivel"];
-                //var_dump($nivel);// imprime el contenido de la variable
-                die;
+                var_dump($nivel);// imprime el contenido de la variable
                 return $nivel;
             }else {
                 echo "No se ha podido conectar la DB";
@@ -78,8 +77,8 @@
         }
      }
 
-    // $obj = new Usuarios();
-    // $obj-> setUsuarioNombre('Juan');
-    // $obj-> setUsuarioPass('123');
-    // $obj-> validar();    
+//     $obj = new Usuarios();
+//     $obj-> setUsuarioNombre('Juan');
+//     $obj-> setUsuarioPass('123');
+//     $obj-> validar(); 
 ?>

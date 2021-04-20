@@ -16,7 +16,8 @@ $objUsuario = new Usuarios();
 </head>
 
 <body>
-    <h4>Login</h4><br>
+    <h4>Login</h4>
+    <br>
     <div class="form-control" style="width: 500px;">
         <fieldset>
             <legend>Formulario</legend> <br>
@@ -34,16 +35,18 @@ $objUsuario = new Usuarios();
     if ($_POST) {
         $usuario = $_REQUEST["txtUsuario"];
         $contra = $_REQUEST["txtPassword"];
+
         $objUsuario->setUsuarioNombre($usuario);
         $objUsuario->setUsuarioPass($contra);
+
         $nivel = $objUsuario->validar();
 
-        if ($nivel != "") {
-            $_SESSION["usuario"]["nivel"] = $nivel;
-            $_SESSION["usuario"]["usuario"] = $usuario;
-            header("location:index.php");
-        } else {
-            header("location:login.php");
+        if($nivel != ""){
+            $_SESSION["usuario"]["nivel"]=$nivel;
+            $_SESSION["usuario"]["usuario"]=$usuario;
+            header("Location:index.php");
+        }else{
+            header("Location:login.php");
         }
     }
 ?>
